@@ -20,10 +20,7 @@
                 v-for="(head, h) in tableHead"
                 :key="'th-' + head.prop + '-' + h"
                 @mousedown="thMousedownHandle(head, h)"
-                @mousemove="thMousemoveHandle(head, h)">
-                <template v-if="head.prop === 'expand'">
-                  <div :style="[{textAlign:'center', width:head.width + 'px'}]"></div>
-                </template>
+                @mousemove="thMousemoveHandle(head)">
                 <template v-if="head.prop === 'select'">
                   <div :style="[{textAlign:'center', width:head.width + 'px'}]" @click.stop="checkClick">
                     <input class="checkbox" id="checkedAll" type="checkbox" :value="checkedAll" @change="checkedAllChange">
@@ -69,11 +66,6 @@
                 :style="[tdStyle]"
                 v-for="(head, h) in tableHead"
                 :key="'td-' + head.pro + '-' + h">
-                <template v-if="head.prop === 'expand' && data.children && data.children.length">
-                  <div :style="[{textAlign:'center', width:head.width + 'px'}]" @click.stop="expandClick()">
-                    <i :class="'expand-icon ' + (data.expanded ? 'el-icon-arrow-down' : 'el-icon-arrow-right')" @click.stop="expandHandle(data, t)"></i>
-                  </div>
-                </template>
                 <template v-if="head.prop === 'select'">
                   <div :style="[{
                       textAlign:'center', 
@@ -101,7 +93,16 @@
                     v-else
                     class="td-text text-tooltip" 
                     :data-title="dataFormatter(head, data)"
-                    :style="[tdTextStyle(head, data)]">{{dataFormatter(head, data)}}</span>
+                    :style="[tdTextStyle(head, data)]">
+                    <i 
+                      v-if="head.prop === 'name' && data.children && data.children.length"
+                      style="color:#409EFF"
+                      :class="'expand-icon ' + (data.expanded ? 'el-icon-remove' : 'el-icon-circle-plus')" 
+                      @click.stop="expandHandle(data, t)">
+                    </i>
+                    <i v-if="head.prop === 'name' && (!data.children || !data.children.length)" style="display:inline-block;width:12px;"></i>
+                    {{dataFormatter(head, data)}}    
+                  </span>
                 </template>
               </td>
             </tr>
@@ -125,7 +126,7 @@
   export default {
     name: 'relationTable',
     props: {
-      relationTable: {type:Object, default:{}},
+      relationTable: {type:Object, default: () => {return {}}},
     },
     components: {},
     created() {},
@@ -293,7 +294,7 @@
         }
       },
       // th 鼠标移动事件
-      thMousemoveHandle(head, h) {
+      thMousemoveHandle(head) {
         if (!this.relationTable.tableHeadDragable || this.relationTable.notDragableProp.includes(head.prop)) {return;}
         let target = event.target || event.srcElement;
         if (event.offsetX > target.offsetWidth - 10) {target.style.cursor = 'col-resize';}

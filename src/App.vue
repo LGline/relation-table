@@ -54,9 +54,9 @@ export default {
         emptyText: '', // 数据为空时的文字
         mousedown: false, // 
         tableHeadList: [ // 带关联关系表格表头数据对象
-          {type:'',prop:'id', label:'编号', width:100, minWidth:80, tooltip:true, align:'', resizable:true},
-          {type:'',prop:'expand', label:'', width:50, minWidth:50, tooltip:true, align:'', resizable:false},
+          // {type:'',prop:'expand', label:'', width:50, minWidth:50, tooltip:true, align:'', resizable:false},
           {type:'',prop:'select', label:'', width:55, minWidth:55, tooltip:true, align:'', resizable:false},
+          {type:'',prop:'id', label:'编号', width:100, minWidth:80, tooltip:true, align:'', resizable:true},
           {type:'',prop:'name', label:'标题', width:300, minWidth:80, tooltip:true, align:'', resizable:true},
           {type:'',prop:'createTime', label:'创建日期', width:120, minWidth:100, tooltip:false, align:'', resizable:true, isCustom:false},
           {type:'',prop:'createUserName', label:'创建人', width:120, minWidth:100, tooltip:true, align:'', resizable:true},
