@@ -1,12 +1,6 @@
 <template>
   <div id="app">
-
-    <div class="tools">
-      <el-button @click="expandAll">全部展开</el-button>
-      <el-button @click="collapseAll">全部收起</el-button>
-    </div>
-
-    <RelationTable
+    <relation-table
       :relationTable="relationTable"
       @resetPagination="resetPagination"
       @mousedown="mousedownHandle"
@@ -20,29 +14,14 @@
       @mouseenterTbodyRowHandle="mouseenterTbodyRowHandle"
       @mouseleaveTbodyRowHandle="mouseleaveTbodyRowHandle"
       @tableHeaderDragend="tableHeaderDragend">
-    </RelationTable>
-
-    <el-dialog
-      title="详情"
-      :visible.sync="centerDialogVisible"
-      width="40%"
-      center>
-      {{currentRow}}
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="centerDialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="centerDialogVisible = false">确 定</el-button>
-      </span>
-    </el-dialog>
+    </relation-table>
   </div>
 </template>
 
 <script>
-import RelationTable from './components/RelationTable.vue'
 import { mockData } from "../mock/mock.js";
-
 export default {
   name: 'app',
-  components: {RelationTable},
   data() {
     return {
       centerDialogVisible: false,
@@ -401,5 +380,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  margin-top: 60px;
 }
 </style>

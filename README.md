@@ -1,8 +1,29 @@
-# relation_table
-带关联关系的表格
+# relation-table
 
-# Use
-克隆到本地后 npm install
+## Project setup
+```
+npm install
+```
 
-初始化完成后 npm run serve
-本地服务跑起来之后访问 localhost:8080 
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Run your tests
+```
+npm run test
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).

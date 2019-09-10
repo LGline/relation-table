@@ -1,15 +1,21 @@
 {
-  "name": "relation_table",
-  "version": "0.1.0",
-  "private": true,
+  "name": "relation-table",
+  "author": "LGline",
+  "version": "0.1.2",
+  "private": false,
+  "keyword": "relation table vue mock",
+  "description": "--mock假数据",
+  "main":"lib/relation-table.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "lib": "vue-cli-service build --target lib --name relation-table --dest lib packages/index.js"
   },
   "dependencies": {
     "core-js": "^2.6.5",
     "element-ui": "^2.12.0",
+    "mockjs": "^1.0.1-beta3",
     "vue": "^2.6.10"
   },
   "devDependencies": {
@@ -22,7 +28,6 @@
     "eslint-plugin-vue": "^5.0.0",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
-    "vue-loader": "^15.7.1",
     "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {

@@ -1,6 +1,6 @@
 <template>
   <div class="relation-wapper">
-    <div id="relation" class="relation-container" ref="relation-container" :style="[containerStyle]" @mouseup="thMouseupHandle()">
+    <div id="relation-table" class="relation-container" ref="relation-container" :style="[containerStyle]" @mouseup="thMouseupHandle()">
       <slot name="horizonScrollBar"></slot>
       <div class="table-header-wrapper">
         <table 
@@ -124,18 +124,36 @@
 <script type="text/ecmascript-6">
 
   export default {
-    name: 'relationTable',
+    name: 'relation-table',
     props: {
-      relationTable: {type:Object, default: () => {return {}}},
+      relationTable: {
+        type:Object, 
+        default: () => {
+          return {
+            style: {
+              container: {},
+              empty: {},
+              thead: {},
+              tbody: {},
+              th: {},
+              td: {}
+            }, 
+            styleKeys: [],
+            pagination: {}
+          }
+        }
+      },
     },
     components: {},
     created() {},
     mounted() {
-      let container = document.getElementById('relation');
-      this.getContainerWidth(container);
+      this.$nextTick(_ => {
+        let container = document.getElementById('relation-table');
+        this.getContainerWidth(container);
+      });
     },
     computed: {
-      tableData() {return this.relationTable.tableList;},
+      tableData() {return this.relationTable.tableList || [];},
       tableHead() {return this.relationTable.tableHeadList || [];},
       containerStyle() {return Object.assign(this.container_style, this.relationTable.style.container || {});},
       emptyStyle() {return Object.assign(this.empty_style, this.relationTable.style.empty);},
@@ -412,7 +430,7 @@
     transform-origin: center;
   }
   .table__tbody .tbody-td .checkbox:checked + label::after,.table__thead .thead-th .checkbox:checked + label::after {transform: rotate(45deg) scaleY(1);}
-  .table__tbody .tbody-td .expand-icon {font-size: 12px; color:#666;}
+  .table__tbody .tbody-td .expand-icon {font-size: 14px; color:#666;}
   #app .relation-wapper .el-pagination {margin-top: 5px;}
 </style>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
