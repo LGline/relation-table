@@ -1,11 +1,11 @@
 {
   "name": "relation-table",
   "author": "LGline",
-  "version": "0.1.2",
+  "version": "0.1.5",
   "private": false,
   "keyword": "relation table vue mock",
-  "description": "--mock假数据",
-  "main":"lib/relation-table.umd.min.js",
+  "description": "去除element-ui依赖",
+  "main": "lib/relation-table.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
-    "element-ui": "^2.12.0",
     "mockjs": "^1.0.1-beta3",
     "vue": "^2.6.10"
   },
